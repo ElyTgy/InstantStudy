@@ -10,6 +10,9 @@
     - EJS
     - Express.JS
   
+Instructions:
+Just install the modules wiht `npm i` and run localhoast with port 3000
+  
  
 🏝️ Inspiration
  All the people in our team are students. We all struggle with handing in assignments on time, and having to watch videos or prerecorded lectures just make it worse because of how much time they take. We thought that it would be much better if there was a tool that let people summarize the videos or audios and save themselves time! This way, instead of watching a 30 minute long lecture, we could just read a text for 5 minutes. It is a rather simple idea, but no one has done it before and we were all excited to use an app like this to free up our time.
