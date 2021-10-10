@@ -28,10 +28,11 @@ app.get("/upload", (req, res)=>{
 })
 
 app.post("/upload", (req, res)=>{
-    const data = req.body;
-    const id = generateUniqueID({length:5, useLetters:false, useNumbers:true});
+    console.log(typeof req.body.data);
+    //const data = req.body;
+    //const id = generateUniqueID({length:5, useLetters:false, useNumbers:true});
     //TODO: Send data to model API. in requests body send id and data.
-    res.redirect("/summary?id=" + encodeURIComponent(id));
+    //res.redirect("/summary?id=" + encodeURIComponent(id));
 })
 
 app.get("/summary", (req, res)=>{

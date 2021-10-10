@@ -23,6 +23,9 @@ SelectForm.addEventListener("submit", function(e){
     {
         label.innerText = "Select a file: ";
         input.type = "file";
+        input.name = "data";
+        if(choice == "mp4"){input.accept=".mp4"}
+        else{input.accept="mp3";}
     }
     else{
         label.innerText = "Enter your link: ";
@@ -35,7 +38,6 @@ SelectForm.addEventListener("submit", function(e){
 
     e.preventDefault();
 })
-
 
 /*
 <form id="UploadForm">
