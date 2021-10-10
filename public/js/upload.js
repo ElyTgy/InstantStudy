@@ -16,7 +16,7 @@ input.required = true;
 button.innerHTML = "Summarize it!";
 loading.innerText = "Loading data...";
 loading.className = "my-5 mx-5 text-center";
-loadingExplain = "This might take a while, so hang tight and don't close the browser!!";
+loadingExplain.innerText = "This might take a while, so hang tight and don't close the browser!!";
 loadingExplain.className = "my-5 mx-5 text-center";
 
 SelectForm.addEventListener("submit", function(e){

@@ -1,15 +1,14 @@
 
-html {
-  font-family: "Raleway", sans-serif;
+html, body {
+  text-decoration: none;
   background-image: url("../images/background.png");
   background-size: cover;
   background-repeat: no-repeat;
-}
-html, body {
   width: 100%;
   height: 100%;
   margin: 0;
   overflow: visible;
+  font-family: "Raleway", sans-serif;
 }
 
 #cards:hover {
@@ -23,7 +22,11 @@ footer {
   width: 100%;
 }
 
-.submit{
+a{
+  color: #ff2281;
+}
+
+button{
   margin: 2.6rem 0rem;
   padding: 0.5rem 1.2rem;
   letter-spacing: 2px;
@@ -32,9 +35,10 @@ footer {
   color: #ff2281;
   border: 2px solid;
   position: relative;
+  text-decoration: none;
 }
 
-.submit button:hover {
+ button:hover {
   border-color: #b76cfd;
   color: #edd9ff;
   box-shadow: 0 0.7em 0.7em -0.3em #edd9ff;
