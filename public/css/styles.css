@@ -1,0 +1,17 @@
+
+body {
+  font-family: "Raleway", sans-serif;
+  background-image: url("../images/background.png");
+  background-color: black;
+}
+
+#cards:hover {
+  box-shadow: 5px 5px 5px 5px #87d4ff;
+}
+
+footer {
+  position: fixed;
+  height: 100px;
+  bottom: 0;
+  width: 100%;
+}

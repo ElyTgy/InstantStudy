@@ -2,7 +2,7 @@ const express = require("express");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const AppError = require("./utils/ExpressError.js");
-const asyncCatch = require("./utils/asyncCatch")
+const asyncCatch = require("./utils/asyncCatch");
 const generateUniqueID = require("generate-unique-id");
 const multer = require("multer");
 const fcRoute = require("./routes/fcard");
@@ -17,8 +17,8 @@ const fs = require("fs");
 const VIDEO_FOLDER = "uploads/"
 const API_TOKEN = "26855332c5a04817a234353737e82b3d";
 const PAUSE_INTERVAL = 20000;
-const MODEL_UPLOAD = "http://b6ba-34-80-100-6.ngrok.io/text";
-const MODEL_FETCH = "http://0d83-34-80-100-6.ngrok.io/summary?id=5551722-f677-48a6-9287-39c0aafd9ac1";
+const MODEL_UPLOAD = "http://df4f-34-80-100-6.ngrok.io/text";
+const MODEL_FETCH = "http://df4f-34-80-100-6.ngrok.io/summary?id=";
 
 const app = express();
 const upload = multer({dest:VIDEO_FOLDER});
@@ -110,25 +110,26 @@ app.post("/upload", upload.single("data"), asyncCatch(async (req, response)=>{
                             transcription = await checkTranscriptionStatus(id);
                             if(transcription){checkagain=false;console.log(transcription);}
                         }
-                        model_upload["text"] = transcription;
-                        model_upload["id"] = id;
+
+                        //send request to model
+                        model_upload.data["text"] = transcription;
+                        model_upload.data["id"] = id;
                         await axios(model_upload);
 
-                        response.redirect('/summary?text=' + encodeURIComponent(id))
+                        response.redirect('/summary?id=' + encodeURIComponent(id))
                     })
                     .catch((err) => {console.error(err); console.log("ERROR")});
             })
             .catch((err) => {console.error(err); console.log("ERROR")});
-    
     });
 }));
 
 
-app.get("/summary", (req, res)=>{
-    id = req.query.id;
-    text = ""//TODO: Fetch text data from model with id
-    res.render("summary.ejs", text); //pass in text data to summary
-})
+app.get("/summary", asyncCatch(async (req, res)=>{
+    let data = await axios.get(MODEL_FETCH+req.query.id)
+    let summary = data.data.summary;
+    res.render("summary.ejs", {"summary":summary});
+}));
 
 app.all('*', (req, res, next)=>{
     next(new AppError(404, "Page Not Found"))
