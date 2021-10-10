@@ -4,10 +4,10 @@
   
   <h3>Tools Used:</h3>
 Markup:  - Python
-  - Flask
-  - AssemblyAI
-  - HTML/CSS/JS
-  - EJS
-  - Express.JS
+         - Flask
+         - AssemblyAI
+         - HTML/CSS/JS
+         - EJS
+         - Express.JS
   
   </html>
