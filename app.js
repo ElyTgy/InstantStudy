@@ -6,14 +6,36 @@ const generateUniqueID = require("generate-unique-id");
 const multer = require("multer");
 const fcRoute = require("./routes/fcard");
 const axios = require("axios");
+const fs = require("fs");
+
 
 //req.params accesses the variable (ex: campground/:id, where id would be the variable)
 //req.body would access the information sent with the request in the requests body
 //req.queray accesses the query strings
 
 const VIDEO_FOLDER = "uploads/"
+const API_TOKEN = "26855332c5a04817a234353737e82b3d";
+const PAUSE_INTERVAL = 120000;
+
 const app = express();
 const upload = multer({dest:VIDEO_FOLDER});
+const assembly_upload = axios.create({
+    baseURL: "https://api.assemblyai.com/v2",
+    headers: {
+        authorization: API_TOKEN,
+        "content-type": "application/json",
+        "transfer-encoding": "chunked",
+    },
+    maxBodyLength: Infinity,
+    maxContentLength: Infinity
+});
+const assembly_transcribe = axios.create({
+    baseURL: "https://api.assemblyai.com/v2",
+    headers: {
+      authorization: API_TOKEN,
+      "content-type": "application/json",
+    }
+  });
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
@@ -33,10 +55,50 @@ app.get("/upload", (req, res)=>{
     //in upload.ejs file, after clicking the sumit button add an element with the text "loading"
 })
 
-app.post("/upload", upload.single("data"), (req, res)=>{
-    const filename = req.file.filename;
+function checkTranscriptionStatus(id){
+    console.log("checking status")
+    assembly_transcribe
+    .get(`/transcript/${id}`)
+    .then((res) => {
+        if(res.data.status == "completed")
+        {
+            data = res.data.text;
+            console.log(data);
+            //send to API
+        }
+        else if(res.data.status == "error")
+        {
+            throw new AppError(500, "Cant trnascribe file")
+        }
+    })
+    .catch((err) => {console.error(err); console.log("ERROR")})
+}
 
-    //const data = req.body;
+app.post("/upload", upload.single("data"), (req, res)=>{
+    const file = req.file.filename;
+    let id = ""
+    let data;
+    fs.readFile(`./${VIDEO_FOLDER}${file}`, (err, data) => {
+        if (err) throw new AppError(500, "Couldn't parse the file properly")
+        assembly_upload
+            .post("/upload", data)
+            .then((res)=>{
+                console.log("loading")
+                assembly_transcribe
+                    .post(`/transcript`, {
+                        audio_url: res.data.upload_url
+                    })
+                    .then((res) => {
+                        console.log("loading")
+                        id = res.data.id;
+                        setInterval(checkTranscriptionStatus, PAUSE_INTERVAL, id);
+                    })
+                    .catch((err) => {console.error(err); console.log("ERROR")});
+            })
+            .catch((err) => {console.error(err); console.log("ERROR")});
+    });
+
+    // const data = req.body; (is this working) can i edit this ? 
     //const id = generateUniqueID({length:5, useLetters:false, useNumbers:true});
     //TODO: Send data to model API. in requests body send id and data.
     //res.redirect("/summary?id=" + encodeURIComponent(id));
