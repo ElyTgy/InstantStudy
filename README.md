@@ -3,7 +3,7 @@
 <h1 align="center">InstantStudy is a speech to text summarizing tool that makes studying easier for students!</h1>
   
   <h3>Tools Used:</h3>
-  * Python
+Markup:  - Python
   - Flask
   - AssemblyAI
   - HTML/CSS/JS
