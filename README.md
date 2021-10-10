@@ -1,4 +1,4 @@
-![Screenshot-2021-10-09-221531.png](https://i.postimg.cc/nz2Md0zj/Screenshot-2021-10-09-221531.png)](https://postimg.cc/KkKZj7tx)
+![Screenshot-2021-10-09-221531.png](https://i.postimg.cc/nz2Md0zj/Screenshot-2021-10-09-221531.png)]
 
 # InstantStudy is a speech to text summarizing tool that makes studying easier for students!
   
@@ -42,3 +42,6 @@ Every single person in our team learned a lot. We got to introduce new design pa
 * We would want to let users upload youtube files by giving us the link
 * Authentication and authorization. Users could sign in and have an account
 * Each user save the notes and add to them
+
+
+This project is a submission for MakeUC 2021 hackathon
