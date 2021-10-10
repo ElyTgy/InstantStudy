@@ -3,7 +3,6 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const AppError = require("./utils/ExpressError.js");
 const asyncCatch = require("./utils/asyncCatch");
-const generateUniqueID = require("generate-unique-id");
 const multer = require("multer");
 const fcRoute = require("./routes/fcard");
 const axios = require("axios");
@@ -126,9 +125,10 @@ app.post("/upload", upload.single("data"), asyncCatch(async (req, response)=>{
 
 
 app.get("/summary", asyncCatch(async (req, res)=>{
-    let data = await axios.get(MODEL_FETCH+req.query.id)
-    let summary = data.data.summary;
-    res.render("summary.ejs", {"summary":summary});
+    //let data = await axios.get(MODEL_FETCH+req.query.id)
+    //let summary = data.data.summary;
+    //res.render("summary.ejs", {"summary":summary});
+    res.render("summary.ejs", {"summary":"Transmission Control Protocol (TCP) is one of the main protocols of the Internet protocol suite. It provides reliable, ordered, and error-checked delivery of a stream of octets (bytes) between applications running on hosts communicating via an IP network. Major internet applications such as the World Wide Web, email, remote administration, and file transfer rely on TCP.", "one_line":"A one line description", "text":"FULL TEXT"});
 }));
 
 app.all('*', (req, res, next)=>{

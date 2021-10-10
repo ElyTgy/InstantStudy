@@ -1,0 +1,23 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#info-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div{
+    margin:5%;
+    background-color: rgb(44 44 44 / 16%);
+    border-radius: 1.5em;
+}
+
+.info-item{
+    margin-bottom: 2%;
+    margin-right: 3%;
+    margin-left: 3%;
+}

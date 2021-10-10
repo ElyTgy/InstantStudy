@@ -1,15 +1,23 @@
 const SelectForm = document.querySelector("#selectFormatForm");
 let UploadForm = document.querySelector("#UploadForm");
 let items = document.querySelectorAll(".format");
+let logo = document.querySelector("#logo");
 
 
 let label = document.createElement("label");
 let button = document.createElement("button");
 let input = document.createElement("input");
+let loading = document.createElement("h5");
+let loadingExplain = document.createElement("h6");
 
 label.htmlFor = "data";
 input.id = "data";
+input.required = true;
 button.innerHTML = "Summarize it!";
+loading.innerText = "Loading data...";
+loading.className = "my-5 mx-5 text-center";
+loadingExplain = "This might take a while, so hang tight and don't close the browser!!";
+loadingExplain.className = "my-5 mx-5 text-center";
 
 SelectForm.addEventListener("submit", function(e){
     let choice;
@@ -39,6 +47,11 @@ SelectForm.addEventListener("submit", function(e){
     e.preventDefault();
 })
 
+
+UploadForm.addEventListener("submit", function(e){
+    logo.after(loadingExplain);
+    logo.after(loading);
+})
 /*
 <form id="UploadForm">
     <label for="data">Select a file:</label>
