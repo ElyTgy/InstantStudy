@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+>>>>>>> 5827ec17016be5a087da1ced32a00461788ca354
 #cards:hover {
   box-shadow: 5px 5px 5px 5px #87d4ff;
 }
@@ -7,8 +14,11 @@ footer {
   height: 100px;
   bottom: 0;
   width: 100%;
+<<<<<<< HEAD
 }
 
 body {
   font-family: "Raleway", sans-serif;
+=======
+>>>>>>> 5827ec17016be5a087da1ced32a00461788ca354
 }

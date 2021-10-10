@@ -17,7 +17,6 @@ const upload = multer({dest:VIDEO_FOLDER});
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
-const axios = require("axios");
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
