@@ -5,45 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>InstantStudy</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <stylesheet src="../static/css/styles.css">
+  <link rel="stylesheet" src="../static/css/styles.css">
 </head>
-<body class="text-center">
+<body class="text-center" style="background-image: linear-gradient(to bottom right, #87D4FF, #ACB8FF, #E0C6C6);">
   <div class="my-5 mx-5">
-    <img src="../public/images/logo.png" alt="InstantStudy logo">
+    <img src="/images/logo.png" alt="InstantStudy logo">
+    <div class="mt-5">
     <h4>InstantStudy aims to make studying easier for students. We provide accurate summary from videos and/or long paragraphs students uploaded... for FREE! Students will be able to finish their work faster with reduced amount of reading material!</h4>
+    </div>
   </div>
 <div class="row my-5 mx-5">
   <div class="col-sm-4 my-3">
-    <div class="card" id="cards">
-      <div class="card-header">STEP 1</div>
+    <div class="card h-100" id="cards">
+      <div class="card-header"><strong>STEP 1</strong></div>
       <div class="card-body">
-        <h5 class="card-title">Upload a video or a text file</h5>
+        <h5 class="card-title">Upload a video file or link</h5>
         <div>
-          <img src="#" alt="video icon">
-          <img src="#" alt="text icon">
+            <img src="images/video.png" alt="video icon" class="card-img" style="width:30vh;padding:0%;">
         </div>
       </div>
     </div>
   </div>
   <div class="col-sm-4 my-3">
-    <div class="card" id="cards">
-      <div class="card-header">STEP 2</div>
+    <div class="card h-100" id="cards">
+      <div class="card-header"><strong>STEP 2</strong></div>
       <div class="card-body">
         <h5 class="card-title">Select which format you want</h5>
-        <div>
-          <img src="#" alt="flashcard icon">
-          <img src="#" alt="notes icon">
+        <div class="row">
+          <div class="col-sm-6 pt-3">
+            <img src="images/flashcards.png" alt="flashcard icon" style="width:60%;">
+          </div>
+          <div class="col-sm-6">
+            <img src="images/notes.png" alt="notes icon" style="width:70%;">
+          </div>
         </div>
       </div>
     </div>
   </div>
     <div class="col-sm-4 my-3">
-    <div class="card" id="cards">
-      <div class="card-header">STEP 3</div>
+    <div class="card h-100" id="cards">
+      <div class="card-header"><strong>STEP 3</strong></div>
       <div class="card-body">
         <h5 class="card-title">Read and Enjoy!</h5>
         <div>
-          <img src="#" alt="yay icon">
+          <img src="images/yay.png" alt="yay icon">
         </div>
       </div>
     </div>
@@ -51,13 +56,13 @@
 </div>
 
   <div>
-    <a href="#" class="btn btn-primary mb-5">Upload Now</a>
+    <a href="upload.ejs" class="btn btn-primary mb-5">Upload Now</a>
   </div>
 
   <div class="my-5"></div>
 
   <footer>
-    <div class="text-center"><img src="#" alt="logo" width=20%>
+    <div class="text-center"><img src="images/logo.png" alt="logo" width=95%>
       <h6 style="padding-bottom:5vh;">Copyright © 2021 InstantStudy. All rights reserved.</h6>
     </div>
   </footer>  
