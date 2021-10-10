@@ -2,21 +2,28 @@ const express = require("express");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const AppError = require("./utils/ExpressError.js");
-const generateUniqueID = require('generate-unique-id');
+const generateUniqueID = require("generate-unique-id");
+const multer = require("multer");
+const fcRoute = require("./routes/fcard");
+const axios = require("axios");
 
 //req.params accesses the variable (ex: campground/:id, where id would be the variable)
 //req.body would access the information sent with the request in the requests body
 //req.queray accesses the query strings
 
+const VIDEO_FOLDER = "uploads/"
 const app = express();
+const upload = multer({dest:VIDEO_FOLDER});
 
-app.engine('ejs', ejsMate);
+app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
-
-app.use(express.urlencoded({extended:true}));
+const axios = require("axios");
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+
 app.use(express.static(__dirname + '/public'));
 
+app.use("/fcards", fcRoute);
 
 app.get("/", (req,res)=>{
     res.render("home.ejs")
@@ -27,8 +34,9 @@ app.get("/upload", (req, res)=>{
     //in upload.ejs file, after clicking the sumit button add an element with the text "loading"
 })
 
-app.post("/upload", (req, res)=>{
-    console.log(typeof req.body.data);
+app.post("/upload", upload.single("data"), (req, res)=>{
+    const filename = req.file.filename;
+
     //const data = req.body;
     //const id = generateUniqueID({length:5, useLetters:false, useNumbers:true});
     //TODO: Send data to model API. in requests body send id and data.
