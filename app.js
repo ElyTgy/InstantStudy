@@ -16,6 +16,7 @@ const fs = require("fs");
 const VIDEO_FOLDER = "uploads/"
 const API_TOKEN = "26855332c5a04817a234353737e82b3d";
 const PAUSE_INTERVAL = 120000;
+let interval_id;
 
 const app = express();
 const upload = multer({dest:VIDEO_FOLDER});
@@ -91,14 +92,15 @@ app.post("/upload", upload.single("data"), (req, res)=>{
                     .then((res) => {
                         console.log("loading")
                         id = res.data.id;
-                        setInterval(checkTranscriptionStatus, PAUSE_INTERVAL, id);
+                        interval_id = setInterval(checkTranscriptionStatus, PAUSE_INTERVAL, id);
+                        //res.redirect("/summary");
                     })
                     .catch((err) => {console.error(err); console.log("ERROR")});
             })
             .catch((err) => {console.error(err); console.log("ERROR")});
+    
     });
-
-    // const data = req.body; (is this working) can i edit this ? 
+    //const data = req.body;
     //const id = generateUniqueID({length:5, useLetters:false, useNumbers:true});
     //TODO: Send data to model API. in requests body send id and data.
     //res.redirect("/summary?id=" + encodeURIComponent(id));
