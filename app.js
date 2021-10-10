@@ -16,8 +16,8 @@ const fs = require("fs");
 const VIDEO_FOLDER = "uploads/"
 const API_TOKEN = "26855332c5a04817a234353737e82b3d";
 const PAUSE_INTERVAL = 20000;
-const MODEL_UPLOAD = "http://df4f-34-80-100-6.ngrok.io/text";
-const MODEL_FETCH = "http://df4f-34-80-100-6.ngrok.io/summary?id=";
+const MODEL_UPLOAD = "http://a9ea-34-71-214-106.ngrok.io/text";
+const MODEL_FETCH = " http://a9ea-34-71-214-106.ngrok.io/summary?id=";
 
 const app = express();
 const upload = multer({dest:VIDEO_FOLDER});
@@ -125,10 +125,11 @@ app.post("/upload", upload.single("data"), asyncCatch(async (req, response)=>{
 
 
 app.get("/summary", asyncCatch(async (req, res)=>{
-    //let data = await axios.get(MODEL_FETCH+req.query.id)
-    //let summary = data.data.summary;
-    //res.render("summary.ejs", {"summary":summary});
-    res.render("summary.ejs", {"summary":"Transmission Control Protocol (TCP) is one of the main protocols of the Internet protocol suite. It provides reliable, ordered, and error-checked delivery of a stream of octets (bytes) between applications running on hosts communicating via an IP network. Major internet applications such as the World Wide Web, email, remote administration, and file transfer rely on TCP.", "one_line":"A one line description", "text":"FULL TEXT"});
+    let data = await axios.get(MODEL_FETCH+req.query.id)
+    let summary = data.data.summary;
+    let desc = data.data.description.slice(6);
+    let text = data.data.text;
+    res.render("summary.ejs", {"summary":summary,"one_line":desc, "text":text});
 }));
 
 app.all('*', (req, res, next)=>{
