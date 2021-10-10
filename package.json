@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "generate-unique-id": "^2.0.1",
     "method-override": "^3.0.0",
+    "multer": "^1.4.3",
     "nodemon": "^2.0.13"
   }
 }
