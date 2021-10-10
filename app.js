@@ -9,40 +9,40 @@ const AppError = require("./utils/ExpressError.js");
 
 const app = express();
 
-app.engine('ejs', ejsMate);
+app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
-
-app.use(express.urlencoded({extended:true}));
+const axios = require("axios");
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
 
+const fcRoute = require("./routes/fcard");
+app.use("/fcards", fcRoute);
 
-app.get("/", (req,res)=>{
-    res.render("home.ejs")
-})
+app.get("/", (req, res) => {
+  res.render("home.ejs");
+});
 
-app.get("upload", (req, res)=>{
+app.get("upload", (req, res) => {});
 
-})
+app.post("upload", (req, res) => {});
 
-app.post("upload", (req, res)=>{
-    
-})
+app.post("summary", (req, res) => {});
 
-app.post("summary", (req, res)=>{
-    
-})
+app.get("/fcard", (req, res) => {
+  res.render("fcards");
+});
 
-app.all('*', (req, res, next)=>{
-    next(new AppError(404, "Page Not Found"))
-})
+app.all("*", (req, res, next) => {
+  next(new AppError(404, "Page Not Found"));
+});
 
-app.use((err, req, res, next)=>{
-    const {status = 500, message="Internal Server Error"} = err
-    res.status(status)
-    res.render("error.ejs",{message:message, status:status, err:err});
-})
+app.use((err, req, res, next) => {
+  const { status = 500, message = "Internal Server Error" } = err;
+  res.status(status);
+  res.render("error.ejs", { message: message, status: status, err: err });
+});
 
-app.listen(3000, ()=>{
-    console.log("Connected")
-})
+app.listen(3000, () => {
+  console.log("Connected");
+});
